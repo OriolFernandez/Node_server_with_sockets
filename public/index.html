@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket server</title>
+</head>
+
+<body>
+    <h1>Acces a la web</h1>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        socket.on('connect', function () {
+            console.log('Conectado al servidor desde el cliente')
+        });
+        socket.on('disconnect', function () {
+            console.log('Desconectado del servidor desde el cliente')
+        });
+
+        socket.emit('message', { name: 'Sr. Uriolus' });
+
+        socket.on('message', function (payload) {
+            console.log('Message recived ', payload);
+        });
+    </script>
+</body>
+
+</html>
