@@ -24,6 +24,11 @@
         socket.on('message', function (payload) {
             console.log('Message recived ', payload);
         });
+
+        socket.on('current-items', function (items) {
+            console.clear();
+            console.table(items);
+        });
     </script>
 </body>
 
