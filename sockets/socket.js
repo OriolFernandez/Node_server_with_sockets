@@ -20,14 +20,12 @@ io.on('connection', client => {
         console.log("Cliente desconectado")
     }); // listen to the event
 
-    client.on('message', (payload) => {
-        console.log('Message recived :', payload);
-        client.broadcast.emit('message', payload);
-    })
     client.on('increase-item', (payload) => {
-        
         items.addItemNumber(payload['id']);
-        console.log(items.getItems());
+        io.emit('current-items', items.getItems());
+    })
+    client.on('add-new-item', (payload) => {
+        items.addItem(payload);
         io.emit('current-items', items.getItems());
     })
 });
